@@ -45,7 +45,7 @@ export class SigninRequest {
             response_mode = SigninRequest.isCode(response_type) ? "query" : null;
         }
 
-        this.state = new SigninState({ nonce: oidc, 
+        this.state = new SigninState({ nonce: oidc | code, 
             data, client_id, authority, redirect_uri, 
             code_verifier: code, 
             request_type, response_mode,
@@ -57,7 +57,7 @@ export class SigninRequest {
         url = UrlUtility.addQueryParam(url, "scope", scope);
 
         url = UrlUtility.addQueryParam(url, "state", this.state.id);
-        if (oidc) {
+        if (oidc || code) {
             url = UrlUtility.addQueryParam(url, "nonce", this.state.nonce);
         }
         if (code) {

@@ -110,10 +110,10 @@ export class ResponseValidator {
             return Promise.reject(new ErrorResponse(response));
         }
 
-        if (state.nonce && !response.id_token) {
+/*         if (state.nonce && !response.id_token) {
             Log.error("ResponseValidator._processSigninParams: Expecting id_token in response");
             return Promise.reject(new Error("No id_token in response"));
-        }
+        } */
 
         if (!state.nonce && response.id_token) {
             Log.error("ResponseValidator._processSigninParams: Not expecting id_token in response");
